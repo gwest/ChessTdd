@@ -21,14 +21,14 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Retrieves_Piece_Added_To_Location()
             {
-                this.target.AddPiece(piece, 1, 1);
+                this.target.AddPiece(piece, new BoardCoordinate(1, 1));
                 Assert.AreEqual<Pawn>(piece, this.target.GetPiece(1, 1));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Does_Not_Throw_Exception_When_Adding_A_Piece_To_An_Unoccupied_Square()
             {
-                target.AddPiece(this.piece, 2, 1);
+                target.AddPiece(this.piece, new BoardCoordinate(2, 1));
             }
         }
     }

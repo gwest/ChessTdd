@@ -1,12 +1,12 @@
-using System;
+using System.Collections.Generic;
 
 namespace ChessTdd
 {
     public class Pawn
     {
-        public Tuple<int, int> GetMovesFrom(int xCoordinate, int yCoordinate)
+        public IEnumerable<BoardCoordinate> GetMovesFrom(int xCoordinate, int yCoordinate)
         {
-            return new Tuple<int, int>(xCoordinate, yCoordinate + 1);
+            yield return new BoardCoordinate(xCoordinate, yCoordinate + 1);
         }
     }
 }

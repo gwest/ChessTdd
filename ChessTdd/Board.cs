@@ -4,9 +4,9 @@
     {
         private readonly Pawn[,] pieces = new Pawn[8, 8];
 
-        public void AddPiece(Pawn piece, int xCoordinate, int yCoordinate)
+        public void AddPiece(Pawn piece, BoardCoordinate moveTarget)
         {
-            this.pieces[xCoordinate, yCoordinate] = piece;
+            this.pieces[moveTarget.X, moveTarget.Y] = piece;
         }
 
         public Pawn GetPiece(int xCoordinate, int yCoordinate)
