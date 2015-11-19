@@ -23,7 +23,7 @@ namespace ChessTdd.Tests
             public void Retrieves_Piece_Added_To_Location()
             {
                 this.target.AddPiece(piece, new BoardCoordinate(2, 1));
-                Assert.AreEqual<Pawn>(piece, this.target.GetPiece(new BoardCoordinate(2, 1)));
+                Assert.AreEqual<Piece>(piece, this.target.GetPiece(new BoardCoordinate(2, 1)));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
@@ -54,6 +54,14 @@ namespace ChessTdd.Tests
                 var coordinate = new BoardCoordinate(0, 3);
 
                 ExtendedAssert.Throws<ArgumentException>(() => this.target.AddPiece(new Pawn(), coordinate));
+            }
+
+            [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
+            public void Accepts_Rook_As_Argument_For_Piece()
+            {
+                var coordinate = new BoardCoordinate(1, 2);
+
+                this.target.AddPiece(new Rook(), coordinate);
             }
         }
     }
