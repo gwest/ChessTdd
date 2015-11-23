@@ -8,39 +8,21 @@ namespace ChessTdd
     {
         public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
         {
-            var moves = new List<BoardCoordinate>();
-            for (int index = 1; index <= boardSize; index++)
-            {
-                var upOneOverOne = new BoardCoordinate(startingLocation.X + index, startingLocation.Y + index);
+            var allDistancesFromStartingLocation = Enumerable.Range(1, boardSize + 1);
 
-                if (upOneOverOne.IsCoordinateValidForBoardSize(boardSize))
-                {
-                    moves.Add(upOneOverOne);
-                }
+            var allPossibleBoardCoordinates = allDistancesFromStartingLocation.SelectMany(sp => GetRadialDiagonalFrom(startingLocation, sp));
 
-                var downOneOverOne = new BoardCoordinate(startingLocation.X + index, startingLocation.Y - index);
+            var legalBoardCoordinates = allPossibleBoardCoordinates.Where(bc => bc.IsCoordinateValidForBoardSize(boardSize));
 
-                if (downOneOverOne.IsCoordinateValidForBoardSize(boardSize))
-                {
-                    moves.Add(downOneOverOne);
-                }
-
-                var upOneBackOne = new BoardCoordinate(startingLocation.X - index, startingLocation.Y + index);
-
-                if (upOneBackOne.IsCoordinateValidForBoardSize(boardSize))
-                {
-                    moves.Add(upOneBackOne);
-                }
-
-                var downOneBackOne = new BoardCoordinate(startingLocation.X - index, startingLocation.Y - index);
-
-                if (downOneBackOne.IsCoordinateValidForBoardSize(boardSize))
-                {
-                    moves.Add(downOneBackOne);
-                }
-            }
-
-            return moves;
+            return legalBoardCoordinates;
         }
+
+        private IEnumerable<BoardCoordinate> GetRadialDiagonalFrom(BoardCoordinate startingPosition, int distance)
+        {
+            yield return new BoardCoordinate(startingPosition.X + distance, startingPosition.Y + distance);
+            yield return new BoardCoordinate(startingPosition.X + distance, startingPosition.Y - distance);
+            yield return new BoardCoordinate(startingPosition.X - distance, startingPosition.Y + distance);
+            yield return new BoardCoordinate(startingPosition.X - distance, startingPosition.Y - distance);
+        } 
     }
 }
