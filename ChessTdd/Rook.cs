@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace ChessTdd
 {
@@ -8,18 +7,15 @@ namespace ChessTdd
     {
         public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
         {
-            for (var index = 1; index <= boardSize; index++)
-            {
-                if (index != startingLocation.Y)
-                {
-                    yield return new BoardCoordinate(startingLocation.X, index);
-                }
+            var availableCoorinates = Enumerable.Range(1, boardSize);
 
-                if (index != startingLocation.X)
-                {
-                    yield return new BoardCoordinate(index, startingLocation.Y);
-                }
-            }
+            var verticalMoves = availableCoorinates.Where(y => startingLocation.Y != y)
+                .Select(y => new BoardCoordinate(startingLocation.X, y));
+
+            var horizonalMoves = availableCoorinates.Where(x => startingLocation.X != x)
+                .Select(x => new BoardCoordinate(x, startingLocation.Y));
+
+            return verticalMoves.Union(horizonalMoves);
         }
     }
 }
