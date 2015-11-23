@@ -20,7 +20,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_2_3_As_One_Result_When_Passed_2_2()
             {
-                var possibleMoves = this.target.GetMovesFrom(2, 2);
+                var possibleMoves = this.target.GetMovesFrom(new BoardCoordinate(2, 2), 8);
 
                 Assert.IsTrue(possibleMoves.Any(bc => bc.X == 2 && bc.Y == 3));
             }
@@ -29,7 +29,7 @@ namespace ChessTdd.Tests
         [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
         public void Returns_2_4_As_One_Result_When_Passed_2_2_When_Piece_Has_Not_Moved()
         {
-            var possibleMoves = this.target.GetMovesFrom(2, 2);
+            var possibleMoves = this.target.GetMovesFrom(new BoardCoordinate(2, 2), 8);
 
             Assert.IsTrue(possibleMoves.Any(bc => bc.X == 2 && bc.Y == 4));
         }
@@ -39,7 +39,7 @@ namespace ChessTdd.Tests
         {
             this.target.HasMoved = true;
 
-            var possibleMoves = this.target.GetMovesFrom(2, 2);
+            var possibleMoves = this.target.GetMovesFrom(new BoardCoordinate(2, 2), 8);
 
             Assert.IsFalse(possibleMoves.Any(bc => bc.X == 2 && bc.Y == 4));
         }

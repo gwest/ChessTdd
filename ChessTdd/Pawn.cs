@@ -6,13 +6,13 @@ namespace ChessTdd
     {
         public bool HasMoved { get; set; }
 
-        public override IEnumerable<BoardCoordinate> GetMovesFrom(int xCoordinate, int yCoordinate)
+        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
         {
-            yield return new BoardCoordinate(xCoordinate, yCoordinate + 1);
+            yield return new BoardCoordinate(startingLocation.X, startingLocation.Y + 1);
 
             if (!this.HasMoved)
             {
-                yield return new BoardCoordinate(xCoordinate, yCoordinate + 2);
+                yield return new BoardCoordinate(startingLocation.X, startingLocation.Y + 2);
             }
         }
     }

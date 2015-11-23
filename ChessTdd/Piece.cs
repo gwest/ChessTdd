@@ -4,6 +4,6 @@ namespace ChessTdd
 {
     public abstract class Piece
     {
-        public abstract IEnumerable<BoardCoordinate> GetMovesFrom(int xCoordinate, int yCoordinate);
+        public abstract IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize);
     }
 }
