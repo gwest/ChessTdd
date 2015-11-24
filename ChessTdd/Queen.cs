@@ -3,15 +3,13 @@ using System.Linq;
 
 namespace ChessTdd
 {
-    public class King : Piece
+    public class Queen : Piece
     {
         public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
         {
-            var oneSquareAwayMoves = GetAllRadialMovesFrom(startingLocation, 1);
+            var movesWithinABoardSize = GetAllRadialMovesFrom(startingLocation, boardSize);
 
-            return oneSquareAwayMoves.Where(bc => bc.IsCoordinateValidForBoardSize(boardSize));
+            return movesWithinABoardSize.Where(bc => bc.IsCoordinateValidForBoardSize(boardSize));
         }
-
-        
     }
 }
