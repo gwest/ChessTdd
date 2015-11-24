@@ -16,13 +16,5 @@ namespace ChessTdd
 
             return legalBoardCoordinates;
         }
-
-        private IEnumerable<BoardCoordinate> GetRadialDiagonalFrom(BoardCoordinate startingPosition, int distance)
-        {
-            yield return new BoardCoordinate(startingPosition.X + distance, startingPosition.Y + distance);
-            yield return new BoardCoordinate(startingPosition.X + distance, startingPosition.Y - distance);
-            yield return new BoardCoordinate(startingPosition.X - distance, startingPosition.Y + distance);
-            yield return new BoardCoordinate(startingPosition.X - distance, startingPosition.Y - distance);
-        } 
     }
 }
