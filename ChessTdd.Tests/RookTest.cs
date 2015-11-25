@@ -9,7 +9,7 @@ namespace ChessTdd.Tests
         private Rook Target { get; set; }
 
         private static readonly BoardCoordinate BottomCorner = new BoardCoordinate(1, 1);
-        private const int BoardSize = 8;
+        private const int DefaultBoardSize = 8;
 
         [TestInitialize]
         public void BeforeEachTest()
@@ -23,7 +23,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_7_Vertical_Moves_With_Board_Size_8()
             {
-                var moves = this.Target.GetMovesFrom(BottomCorner, BoardSize);
+                var moves = this.Target.GetMovesFrom(BottomCorner, DefaultBoardSize);
 
                 Assert.AreEqual<int>(7, moves.Count(bc => bc.X == 1));
             }
@@ -31,7 +31,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_7_Horizonal_Moves_With_Board_Size_8()
             {
-                var moves = this.Target.GetMovesFrom(BottomCorner, BoardSize);
+                var moves = this.Target.GetMovesFrom(BottomCorner, DefaultBoardSize);
 
                 Assert.AreEqual<int>(7, moves.Count(bc => bc.Y == 1));
             }
@@ -39,7 +39,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_No_Moves_That_Contains_A_Zero()
             {
-                var moves = this.Target.GetMovesFrom(BottomCorner, BoardSize);
+                var moves = this.Target.GetMovesFrom(BottomCorner, DefaultBoardSize);
 
                 Assert.AreEqual<int>(0, moves.Count(bc => bc.X == 0 || bc.Y == 0));
             }
@@ -47,7 +47,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_7_4_From_7_1()
             {
-                var moves = this.Target.GetMovesFrom(new BoardCoordinate(7, 1), BoardSize);
+                var moves = this.Target.GetMovesFrom(new BoardCoordinate(7, 1), DefaultBoardSize);
 
                 Assert.IsTrue(moves.Any(bc => bc.X == 7 && bc.Y == 4));
             }
