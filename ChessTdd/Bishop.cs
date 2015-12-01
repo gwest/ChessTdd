@@ -6,7 +6,7 @@ namespace ChessTdd
 {
     public class Bishop : Piece
     {
-        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
+        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize = Board.DefaultBoardSize)
         {
             var allDistancesFromStartingLocation = Enumerable.Range(1, boardSize + 1);
 

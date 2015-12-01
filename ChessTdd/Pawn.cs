@@ -6,7 +6,7 @@ namespace ChessTdd
     {
         public bool HasMoved { get; set; }
 
-        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
+        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize = Board.DefaultBoardSize)
         {
             yield return new BoardCoordinate(startingLocation.X, startingLocation.Y + 1);
 

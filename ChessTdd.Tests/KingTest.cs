@@ -9,14 +9,13 @@ namespace ChessTdd.Tests
     {
         private King Target { get; set; }
 
-        private const int DefaultBoardSize = 8;
         private IEnumerable<BoardCoordinate> MovesFrom_3_3;
             
         [TestInitialize]
         public void BeforeEachTest()
         {
             Target = new King();
-            MovesFrom_3_3 = Target.GetMovesFrom(new BoardCoordinate(3, 3), DefaultBoardSize);
+            MovesFrom_3_3 = Target.GetMovesFrom(new BoardCoordinate(3, 3));
         }
 
         [TestClass]
@@ -25,7 +24,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_1_2_For_1_1()
             {
-                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize);
+                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1));
 
                 Assert.IsTrue(moves.Any(bc => bc.X == 1 && bc.Y == 2));
             }
@@ -33,7 +32,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_2_2_For_1_1()
             {
-                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize);
+                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1));
 
                 Assert.IsTrue(moves.Any(bc => bc.X == 2 && bc.Y == 2));
             }
@@ -59,7 +58,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Does_Not_Return_0_0_From_1_1()
             {
-                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize);
+                var moves = Target.GetMovesFrom(new BoardCoordinate(1, 1));
 
                 Assert.IsFalse(moves.Any(bc => bc.X == 0 || bc.Y == 0));
             }

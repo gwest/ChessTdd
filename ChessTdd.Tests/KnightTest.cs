@@ -13,7 +13,7 @@ namespace ChessTdd.Tests
 
         private IEnumerable<BoardCoordinate> GetMoves(int x, int y)
         {
-            return Target.GetMovesFrom(new BoardCoordinate(x, y), 8);
+            return Target.GetMovesFrom(new BoardCoordinate(x, y));
         }
             
         [TestInitialize]

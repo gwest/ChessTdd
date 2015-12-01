@@ -5,7 +5,7 @@ namespace ChessTdd
 {
     public class Rook : Piece
     {
-        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
+        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize = Board.DefaultBoardSize)
         {
             var availableCoorinates = Enumerable.Range(1, boardSize);
 

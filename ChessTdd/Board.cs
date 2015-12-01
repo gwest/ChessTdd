@@ -4,6 +4,8 @@ namespace ChessTdd
 {
     public class Board
     {
+        public const int DefaultBoardSize = 8;
+
         private const int BoardSize = 8;
         private readonly Piece[,] pieces = new Piece[8, 8];
 

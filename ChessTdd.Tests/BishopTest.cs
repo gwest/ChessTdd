@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChessTdd.Tests
@@ -12,7 +9,10 @@ namespace ChessTdd.Tests
     {
         private Bishop Target { get; set; }
 
-        private const int DefaultBoardSize = 8;
+        private IEnumerable<BoardCoordinate> GetMoves(int x, int y)
+        {
+            return Target.GetMovesFrom(new BoardCoordinate(x, y));
+        }
 
         [TestInitialize]
         public void BeforeEachTest()
@@ -26,7 +26,7 @@ namespace ChessTdd.Tests
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_Non_Empty_Collection()
             {
-                Assert.IsTrue(Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize).Any());
+                Assert.IsTrue(this.GetMoves(1, 1).Any());
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
@@ -34,42 +34,37 @@ namespace ChessTdd.Tests
             {
                 var bishop = new Bishop();
 
-                Assert.IsTrue(
-                    Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize).Any(bc => bc.X == 2 && bc.Y == 2));
+                Assert.IsTrue(this.GetMoves(1, 1).Any(bc => bc.X == 2 && bc.Y == 2));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_1_1_For_2_2()
             {
-                Assert.IsTrue(
-                    Target.GetMovesFrom(new BoardCoordinate(2, 2), DefaultBoardSize).Any(bc => bc.X == 1 && bc.Y == 1));
+                Assert.IsTrue(this.GetMoves(2, 2).Any(bc => bc.X == 1 && bc.Y == 1));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_2_1_For_1_2()
             {
-                Assert.IsTrue(
-                    Target.GetMovesFrom(new BoardCoordinate(1, 2), DefaultBoardSize).Any(bc => bc.X == 2 && bc.Y == 1));
+                Assert.IsTrue(this.GetMoves(1, 2).Any(bc => bc.X == 2 && bc.Y == 1));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Does_Not_Return_Negative_Values_For_BoardCoorinates()
             {
-                Assert.IsFalse(
-                    Target.GetMovesFrom(new BoardCoordinate(1, 2), DefaultBoardSize).Any(bc => bc.Y < 0 || bc.X < 0));
+                Assert.IsFalse(this.GetMoves(1, 2).Any(bc => bc.Y < 0 || bc.X < 0));
             }
             
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_8_8_For_1_1()
             {
-                Assert.IsTrue(
-                    Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize).Any(bc => bc.X == 8 && bc.Y == 8));
+                Assert.IsTrue(this.GetMoves(1, 1).Any(bc => bc.X == 8 && bc.Y == 8));
             }
 
             [TestMethod, TestCategory("Proven"), TestCategory("Unit")]
             public void Returns_8_1_For_1_8()
             {
-                Assert.IsTrue(Target.GetMovesFrom(new BoardCoordinate(1, 8), DefaultBoardSize).Any(bc => bc.X == 8 && bc.Y == 1));
+                Assert.IsTrue(this.GetMoves(1, 8).Any(bc => bc.X == 8 && bc.Y == 1));
             }
         }
     }

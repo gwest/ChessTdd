@@ -5,7 +5,7 @@ namespace ChessTdd
 {
     public class Knight : Piece
     {
-        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize)
+        public override IEnumerable<BoardCoordinate> GetMovesFrom(BoardCoordinate startingLocation, int boardSize = Board.DefaultBoardSize)
         {
             var allPotentialMoves = new List<BoardCoordinate>
             {

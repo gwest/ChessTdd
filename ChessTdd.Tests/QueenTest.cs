@@ -10,13 +10,12 @@ namespace ChessTdd.Tests
         private Queen Target { get; set; }
 
         private IEnumerable<BoardCoordinate> MovesFrom_1_1;
-        private const int DefaultBoardSize = 8;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
             Target = new Queen();
-            MovesFrom_1_1 = Target.GetMovesFrom(new BoardCoordinate(1, 1), DefaultBoardSize);
+            MovesFrom_1_1 = Target.GetMovesFrom(new BoardCoordinate(1, 1));
         }
 
         [TestClass]
